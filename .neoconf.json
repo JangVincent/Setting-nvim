@@ -1,0 +1,29 @@
+{
+  "neodev": {
+    "library": {
+      "enabled": true,
+      "plugins": true
+    }
+  },
+  "neoconf": {
+    "plugins": {
+      "lua_ls": {
+        "enabled": true
+      }
+    }
+  },
+  "lspconfig": {
+    "lua_ls": {
+      "Lua.format.enable": false
+    },
+    "jdtls": {
+      "java.configuration.runtimes": [
+        {
+          "name": "JavaSE-21",
+          "path": "/opt/homebrew/Cellar/openjdk@21/21.0.4/libexec/openjdk.jdk/Contents/Home",
+          "default": true
+        }
+      ]
+    }
+  }
+}
