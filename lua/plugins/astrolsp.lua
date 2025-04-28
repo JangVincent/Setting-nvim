@@ -1,4 +1,4 @@
--- if true then return {} end -- WARN: REMOVE THIS LINE TO ACTIVATE THIS FILE
+if true then return {} end -- WARN: REMOVE THIS LINE TO ACTIVATE THIS FILE
 
 -- AstroLSP allows you to customize the features in AstroNvim's LSP configuration engine
 -- Configuration documentation can be found with `:h astrolsp`
@@ -21,14 +21,12 @@ return {
         })
       end,
     },
-
     -- Configuration table of features provided by AstroLSP
     features = {
       codelens = true, -- enable/disable codelens refresh on start
       inlay_hints = false, -- enable/disable inlay hints on start
       semantic_tokens = true, -- enable/disable semantic token highlighting
     },
-
     -- customize lsp formatting options
     formatting = {
       -- control auto formatting on save
@@ -53,29 +51,24 @@ return {
     -- enable servers that you already have installed without mason
     servers = {
       -- "pyright"
-      -- set jdtls server settings
       jdtls = function()
         -- use this function notation to build some variables
-        local root_markers =
-          { ".git", "mvnw", "gradlew", "pom.xml", "build.gradle" }
+        local root_markers = { ".git", "mvnw", "gradlew", "pom.xml", "build.gradle" }
         local root_dir = require("jdtls.setup").find_root(root_markers)
 
         -- calculate workspace dir
         local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
-        local workspace_dir = vim.fn.stdpath("data")
-          .. "/site/java/workspace-root/"
-          .. project_name
+        local workspace_dir = vim.fn.stdpath "data" .. "/site/java/workspace-root/" .. project_name
         os.execute("mkdir " .. workspace_dir)
 
         -- get the mason install path
-        local install_path =
-          require("mason-registry").get_package("jdtls"):get_install_path()
+        local install_path = require("mason-registry").get_package("jdtls"):get_install_path()
 
         -- get the current OS
         local os
-        if vim.fn.has("macunix") then
+        if vim.fn.has "macunix" then
           os = "mac"
-        elseif vim.fn.has("win32") then
+        elseif vim.fn.has "win32" then
           os = "win"
         else
           os = "linux"
@@ -98,9 +91,7 @@ return {
             "--add-opens",
             "java.base/java.lang=ALL-UNNAMED",
             "-jar",
-            vim.fn.glob(
-              install_path .. "/plugins/org.eclipse.equinox.launcher_*.jar"
-            ),
+            vim.fn.glob(install_path .. "/plugins/org.eclipse.equinox.launcher_*.jar"),
             "-configuration",
             install_path .. "/config_" .. os,
             "-data",
